@@ -1,5 +1,5 @@
 streamlit
 numpy
-pillow
+Pillow
 pytesseract
 regex==2020.10.28
