@@ -22,25 +22,29 @@ class OCR:
             img = Image.open(image)
             st.image(img, width=350)
             st.info("Text extracted")
-            self.text = self.extract_text(img)
+            with st.spinner("Extracting text..."):
+                self.text = pytesseract.image_to_string(img, lang="eng")
             st.write("{}".format(self.text))
 
             # Option to analyze text
             self.analyze_text = st.sidebar.checkbox("Analyze text")
             if self.analyze_text == True:
-                self.show_analysis()
+                with st.spinner("Analyzing text..."):
+                    self.show_analysis()
 
     def extract_text(self, img):
         # The command that extracts the text from the image
-        text = pytesseract.image_to_string(img, lang="eng")
+        with st.spinner("Extracting text..."):
+            text = pytesseract.image_to_string(img, lang="eng")
         return text
 
     def show_analysis(self):
         # Searches for CPF, dates and good and bad words in the extraction
-        cpf = fc.search_cpf(self.text)
-        dates = fc.search_date(self.text)
-        good_words, good_percentage = fc.search_good_words(self.text)
-        bad_words, bad_percentage = fc.search_bad_words(self.text)
+        with st.spinner("Analyzing text..."):
+            cpf = fc.search_cpf(self.text)
+            dates = fc.search_date(self.text)
+            good_words, good_percentage = fc.search_good_words(self.text)
+            bad_words, bad_percentage = fc.search_bad_words(self.text)
 
         if cpf is None:
             st.warning("No CPF found.")
