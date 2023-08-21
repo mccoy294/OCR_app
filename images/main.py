@@ -1,7 +1,7 @@
 import streamlit as st
 from PIL import Image
 import pytesseract
-import functions.functions as fc
+import functions as fc
 
 class OCR:
 
