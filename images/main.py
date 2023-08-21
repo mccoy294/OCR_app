@@ -16,7 +16,7 @@ class OCR:
         # Initial content of the page
         st.title("OCR Program")
         st.write("Optical Character Recognition (OCR) implemented with Python")
-        image = st.file_uploader("Select an image", type=["png", "jpg"])
+        image = st.file_uploader("Select an image", type=["png", "jpg","jpeg"])
         # If an image is selected...
         if image:
             img = Image.open(image)
