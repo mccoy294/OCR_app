@@ -1,4 +1,4 @@
-import re
+import regex as re
 
 def find_cpf(text):
     """Function to find CPFs in the extracted text.
