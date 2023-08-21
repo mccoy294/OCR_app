@@ -1,0 +1,5 @@
+streamlit
+numpy
+pillow
+pytesseract==0.3.8
+regex==2020.10.28
