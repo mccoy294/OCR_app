@@ -1,1 +1,1 @@
-tesseract-ocr
+tesseract-ocr==5.0.0-alpha.1-4
