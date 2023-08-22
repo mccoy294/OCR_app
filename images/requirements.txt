@@ -1,6 +1,5 @@
 streamlit
 numpy
 Pillow
-tesseract-ocr
-pytesseract
+easyocr
 regex==2020.10.28
