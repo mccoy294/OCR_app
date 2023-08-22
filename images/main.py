@@ -1,6 +1,6 @@
 import streamlit as st
 from PIL import Image
-import pytesseract
+import easyocr
 import functions as fc
 
 class OCR:
@@ -23,9 +23,12 @@ class OCR:
             st.image(img, width=350)
             st.info("Text extracted")
             with st.spinner("Extracting text..."):
-                self.text = pytesseract.image_to_string(img, lang="eng")
+                self.reader = easyocr.Reader(['en'])
+                self.text = reader.readtext(img, detail =0)
             st.write("{}".format(self.text))
 
+
+            
             # Option to analyze text
             self.analyze_text = st.sidebar.checkbox("Analyze text")
             if self.analyze_text == True:
@@ -35,7 +38,8 @@ class OCR:
     def extract_text(self, img):
         # The command that extracts the text from the image
         with st.spinner("Extracting text..."):
-            text = pytesseract.image_to_string(img, lang="eng")
+            reader = easyocr.Reader(['en'])
+            text = reader.readtext(img, detail =0)
         return text
 
     def show_analysis(self):
