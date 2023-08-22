@@ -1,5 +1,5 @@
 streamlit
 numpy
 Pillow
-easyocr
+easyocr==1.4.1
 regex==2020.10.28
