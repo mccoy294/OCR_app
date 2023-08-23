@@ -1,6 +1,6 @@
 import streamlit as st
 from PIL import Image
-import opencv
+import cv2
 import functions as fc
 
 class OCR:
