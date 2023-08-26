@@ -15,14 +15,17 @@ def qr_code_dec(image):
     if len(data) > 0:
         print("Decoded Data: '{}'".format(data))
 
-    # Show the detection in the image:
+        # Show the detection in the image:
         show_qr_detection(image, vertices)
         rectified_image = np.uint8(rectified_qr_code)
         decoded_data = 'Decoded data: '+ data
-        rectified_image = cv2.putText(rectified_image,decoded_data,(50,350),fontFace=cv2.FONT_HERSHEY_COMPLEX, fontScale = 2,
-            color = (250,225,100),thickness =  3, lineType=cv2.LINE_AA)
+        rectified_image = cv2.putText(rectified_image, decoded_data, (50, 350),
+            fontFace=cv2.FONT_HERSHEY_COMPLEX, fontScale=2,
+            color=(250, 225, 100), thickness=3, lineType=cv2.LINE_AA)
            
-    return decoded_data
+        return rectified_image  # Return the modified rectified_image instead of decoded_data
+
+    return "No QR code detected"
 
 
 st.markdown("**Warning** Only add QR-code Images, other images will give out an error")
