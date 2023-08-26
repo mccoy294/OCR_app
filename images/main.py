@@ -1,80 +1,16 @@
-import streamlit as st
-from PIL import Image
 import cv2
-import functions as fc
+import numpy as np
+import streamlit as st
 
-class OCR:
+image = st.camera_input("Show QR code")
 
-    def __init__(self):
-        # Set the title of the page
-        st.set_page_config(page_title="Invoice OCR")
-        # Initialize the text option and set the analyze boolean to False
-        self.text = ""
-        self.analyze_text = False
+if image is not None:
+    bytes_data = image.getvalue()
+    cv2_img = cv2.imdecode(np.frombuffer(bytes_data, np.uint8), cv2.IMREAD_COLOR)
 
-    def initial(self):
-        # Initial content of the page
-        st.title("OCR Program")
-        st.write("Optical Character Recognition (OCR) implemented with Python")
-        image = st.file_uploader("Select an image", type=["png", "jpg","jpeg"])
-        # If an image is selected...
-        if image:
-            img = Image.open(image)
-            st.image(img, width=350)
-            st.info("Text extracted")
-            with st.spinner("Extracting text..."):
-                self.reader = easyocr.Reader(['en'])
-                self.text = reader.readtext(img, detail =0)
-            st.write("{}".format(self.text))
+    detector = cv2.QRCodeDetector()
 
+    data, bbox, straight_qrcode = detector.detectAndDecode(cv2_img)
 
-            
-            # Option to analyze text
-            self.analyze_text = st.sidebar.checkbox("Analyze text")
-            if self.analyze_text == True:
-                with st.spinner("Analyzing text..."):
-                    self.show_analysis()
-
-    def extract_text(self, img):
-        # The command that extracts the text from the image
-        with st.spinner("Extracting text..."):
-            reader = easyocr.Reader(['en'])
-            text = reader.readtext(img, detail =0)
-        return text
-
-    def show_analysis(self):
-        # Searches for CPF, dates and good and bad words in the extraction
-        with st.spinner("Analyzing text..."):
-            cpf = fc.search_cpf(self.text)
-            dates = fc.search_date(self.text)
-            good_words, good_percentage = fc.search_good_words(self.text)
-            bad_words, bad_percentage = fc.search_bad_words(self.text)
-
-        if cpf is None:
-            st.warning("No CPF found.")
-        else:
-            cpf = fc.summarize_cpf(cpf)
-            st.success("CPF found:")
-            st.write(cpf)
-
-        if dates is None:
-            st.warning("No dates found.")
-        else:
-            dates = fc.summarize_dates(dates)
-            st.success("Dates found:")
-            st.write(dates)
-
-        if good_words == 0:
-            st.warning("No good words found.")
-        else:
-            st.success("Good words:")
-            st.write("{} word(s). Represent {:.2f}% of the words in the text.".format(good_words, good_percentage))
-
-        if bad_words == 0:
-            st.warning("No bad words found.")
-        else:
-            st.success("Bad words:")
-            st.write("{} word(s). Represent {:.2f}% of the words in the text.".format(bad_words, bad_percentage))
-
-ocr = OCR()
-ocr.initial()
+    st.write("Here!")
+    st.write(data)
