@@ -1,6 +1,6 @@
-streamlit
+pandas
 numpy
+streamlit
+easyocr
 Pillow
-easyocr==1.4.1
-regex==2020.10.28
-opencv-python-headless = ">=4.5"
+matplotlib
