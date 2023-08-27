@@ -48,4 +48,4 @@ if img_file_buffer is not None:
     st.subheader('Decoded data')
     
     decoded_data = qr_code_dec(image)
-    st.markdown(decoded_data)
+    st.write(decoded_data)
