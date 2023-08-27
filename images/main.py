@@ -11,9 +11,12 @@ def qr_code_dec(image):
     
     decoder = cv2.QRCodeDetector()
     data, vertices, rectified_qr_code = decoder.detectAndDecode(image)
-    
-    if len(data) > 0:
+
+    return data
+    """if len(data) > 0:
         print("Decoded Data: '{}'".format(data))
+
+        # How to Decode
 
         # Show the detection in the image:
         show_qr_detection(image, vertices)
@@ -25,7 +28,7 @@ def qr_code_dec(image):
            
         return rectified_image  # Return the modified rectified_image instead of decoded_data
 
-    return "No QR code detected"
+    return "No QR code detected" """
 
 
 st.markdown("**Warning** Only add QR-code Images, other images will give out an error")
