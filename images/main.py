@@ -10,9 +10,13 @@ st.title('QR Code Decoding with OpenCV')
 #uploading the images
 img_file_buffer = st.file_uploader("Upload an image which you want to Decode", type=[ "jpg", "jpeg",'png'])
 
+if img_file_buffer is not None:
+    # Load the image
+    image = cv2.imread(img_file_buffer)
+    image = np.array(Image.open(img_file_buffer))
+    st.subheader('Orginal Image')
 
-# Load the image
-image = cv2.imread(img_file_buffer)
+
 
 
 
