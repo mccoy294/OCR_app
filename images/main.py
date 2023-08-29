@@ -13,6 +13,10 @@ img_file_buffer = st.file_uploader("Upload an image which you want to Decode", t
 if img_file_buffer is not None:
     # Load the image
     image = cv2.imread(str(img_file_buffer))
+
+    # Convert the image to RGB (EasyOCR uses RGB format)
+    img_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+
     image = np.array(Image.open(img_file_buffer))
     st.subheader('Orginal Image')
 
