@@ -19,6 +19,13 @@ def preprocess_image(image):
     
     return binary
 
+def find_start_and_end(binary_image):
+    # Find the leftmost and rightmost non-zero pixel columns
+    start_col = np.argmax(binary_image.sum(axis=0) > 0)
+    end_col = binary_image.shape[1] - np.argmax(np.flip(binary_image.sum(axis=0)) > 0)
+    
+    return start_col, end_col
+
 if img_file_buffer is not None:
 
   image = Image.open(img_file_buffer) # read image with PIL library
