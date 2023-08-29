@@ -5,3 +5,4 @@ easyocr
 Pillow
 matplotlib
 pyzbar
+zbar-py
