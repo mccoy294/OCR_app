@@ -1,6 +1,7 @@
 import numpy as np
 import cv2
 import regex as re
+from PIL import Image
 
 def find_cpf(text):
     """Function to find CPFs in the extracted text.
