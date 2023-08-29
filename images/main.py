@@ -7,6 +7,14 @@ import easyocr
 #title of the web-app
 st.title('QR Code Decoding with OpenCV')
 
+# Load the image
+image_path = "path_to_your_image.png"
+image = cv2.imread(image_path)
+
+
+
+
+
 @st.cache
 def qr_code_dec(image):
     
