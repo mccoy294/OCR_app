@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 import cv2
+import functions
 
 # Title of the web-app
 st.title('Barcode Decoding with OpenCV')
