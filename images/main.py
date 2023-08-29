@@ -14,3 +14,5 @@ if img_file_buffer is not None:
 
   image = Image.open(img_file_buffer) # read image with PIL library
   st.image(image) #display
+
+  binary_image = functions.preprocess_image(image)
