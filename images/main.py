@@ -45,7 +45,7 @@ def main():
         img_array = np.array(img_file_buffer)
         
         # Read the image using OpenCV
-        image = cv2.cvtColor(img_array, cv2.COLOR_RGB2BGR)  # Convert from RGB to BGR
+        image = img_array
         
         binary_image = preprocess_image(image)
         start_col, end_col = find_start_and_end(binary_image)
