@@ -41,6 +41,30 @@ def decode_barcode(binary_image, start_col, end_col):
     
     return barcode_data
 
+
+def decode_code128(binary_data):
+    # Mapping of patterns to characters
+    code128_chars = {
+        "11011001100": "0",
+        "11001101100": "1",
+        # ... (mapping for other characters)
+    }
+    
+    start_character = "11010000100"
+    stop_character = "1100011101011"
+    
+    if binary_data.startswith(start_character) and binary_data.endswith(stop_character):
+        decoded_text = ""
+        for i in range(6, len(binary_data) - 6, 11):
+            char_pattern = binary_data[i:i+11]
+            if char_pattern in code128_chars:
+                decoded_text += code128_chars[char_pattern]
+        
+        return decoded_text
+    else:
+        return "Invalid Code 128 barcode"
+
+
 if img_file_buffer is not None:
 
   image = Image.open(img_file_buffer) # read image with PIL library
@@ -53,4 +77,8 @@ if img_file_buffer is not None:
 
   barcode_data = decode_barcode(binary_image, start_col, end_col)
   st.write("Decoded Barcode Data:", barcode_data)
+
+  # Assuming 'barcode_data' is the binary data obtained from the barcode
+  barcode_text = decode_code128(barcode_data)
+  st.write("Decoded Barcode Text:", barcode_text)
  
