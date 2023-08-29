@@ -96,8 +96,7 @@ def summarize_dates(date_list):
 #--------------------------------------------------------------- QR code ---------------------------------------------------
 def preprocess_image(image):
     # Convert the image to grayscale
-    if img_file_buffer is not None:
-        image = np.array(Image.open(img_file_buffer))
+    image = np.array(Image.open(img_file_buffer))
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     
     # Apply thresholding to convert to binary image
