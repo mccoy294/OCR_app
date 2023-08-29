@@ -25,3 +25,4 @@ if img_file_buffer is not None:
   st.image(image) #display
 
   binary_image = preprocess_image(img_file_buffer)
+  st.image(binary_image)
