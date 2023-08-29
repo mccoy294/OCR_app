@@ -26,6 +26,21 @@ def find_start_and_end(binary_image):
     
     return start_col, end_col
 
+def decode_barcode(binary_image, start_col, end_col):
+    # Decoding logic (simplified for example)
+    barcode_data = ""
+    
+    # Assuming each bar is 3 pixels wide
+    bar_width = 3
+    for col in range(start_col, end_col, bar_width):
+        bar_sum = binary_image[:, col:col+bar_width].sum()
+        if bar_sum > binary_image.shape[0] * bar_width // 2:
+            barcode_data += "1"
+        else:
+            barcode_data += "0"
+    
+    return barcode_data
+
 if img_file_buffer is not None:
 
   image = Image.open(img_file_buffer) # read image with PIL library
