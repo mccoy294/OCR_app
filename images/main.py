@@ -33,3 +33,6 @@ if img_file_buffer is not None:
 
   binary_image = preprocess_image(img_file_buffer)
   st.image(binary_image)
+
+  start_col, end_col = find_start_and_end(binary_image)
+ 
