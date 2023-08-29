@@ -10,7 +10,7 @@ st.title('Barcode Decoding with OpenCV')
 # Uploading the images
 img_file_buffer = st.file_uploader("Upload an image for decoding", type=["jpg", "jpeg", "png"])
 
-if file is not None:
+if img_file_buffer is not None:
 
-  image = Image.open(file) # read image with PIL library
+  image = Image.open(img_file_buffer) # read image with PIL library
   st.image(image) #display
