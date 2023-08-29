@@ -2,6 +2,7 @@ import streamlit as st
 from PIL import Image
 import numpy as np
 import cv2
+import easyocr
 
 #title of the web-app
 st.title('QR Code Decoding with OpenCV')
