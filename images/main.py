@@ -50,4 +50,7 @@ if img_file_buffer is not None:
   st.image(binary_image)
 
   start_col, end_col = find_start_and_end(binary_image)
+
+  barcode_data = decode_barcode(binary_image, start_col, end_col)
+  st.write("Decoded Barcode Data:", barcode_data)
  
