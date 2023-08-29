@@ -1,15 +1,12 @@
 import streamlit as st
-from PIL import Image
 import numpy as np
 import cv2
-import easyocr
 
-#title of the web-app
-st.title('QR Code Decoding with OpenCV')
+# Title of the web-app
+st.title('Barcode Decoding with OpenCV')
 
-#uploading the images
-img_file_buffer = st.file_uploader("Upload an image which you want to Decode", type=[ "jpg", "jpeg",'png'])
-    
+# Uploading the images
+img_file_buffer = st.file_uploader("Upload an image for decoding", type=["jpg", "jpeg", "png"])
 
 def preprocess_image(image):
     # Convert the image to grayscale
@@ -43,15 +40,18 @@ def decode_barcode(binary_image, start_col, end_col):
     return barcode_data
 
 def main():
-    image_path = str(img_file_buffer)
-    image = cv2.imread(image_path)
-    
-    binary_image = preprocess_image(image)
-    start_col, end_col = find_start_and_end(binary_image)
-    
-    barcode_data = decode_barcode(binary_image, start_col, end_col)
-    print("Decoded Barcode Data:", barcode_data)
+    if img_file_buffer is not None:
+        # Convert BytesIO to a numpy array
+        img_array = np.array(img_file_buffer)
+        
+        # Read the image using OpenCV
+        image = cv2.cvtColor(img_array, cv2.COLOR_RGB2BGR)
+        
+        binary_image = preprocess_image(image)
+        start_col, end_col = find_start_and_end(binary_image)
+        
+        barcode_data = decode_barcode(binary_image, start_col, end_col)
+        st.write("Decoded Barcode Data:", barcode_data)
 
-
-if img_file_buffer is not None:
+if __name__ == "__main__":
     main()
