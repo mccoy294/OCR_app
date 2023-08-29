@@ -7,9 +7,12 @@ import easyocr
 #title of the web-app
 st.title('QR Code Decoding with OpenCV')
 
+#uploading the images
+img_file_buffer = st.file_uploader("Upload an image which you want to Decode", type=[ "jpg", "jpeg",'png'])
+
+
 # Load the image
-image_path = "path_to_your_image.png"
-image = cv2.imread(image_path)
+image = cv2.imread(img_file_buffer)
 
 
 
