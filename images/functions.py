@@ -1,3 +1,5 @@
+import numpy as np
+import cv2
 import regex as re
 
 def find_cpf(text):
