@@ -55,5 +55,4 @@ def main():
         barcode_data = decode_barcode(binary_image, start_col, end_col)
         st.write("Decoded Barcode Data:", barcode_data)
 
-if __name__ == "__main__":
-    main()
+main()
